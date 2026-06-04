@@ -37,6 +37,11 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
+        .logo-link {
+            text-decoration: none;
+            color: white;
+        }
+
         .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: -1px; }
         .logo span { color: var(--accent); }
 
@@ -263,18 +268,23 @@
 <body>
 
     <header>
-        <div class="logo">TDI<span>NOTICIAS</span></div>
+        <!-- Logo enlazado a la página de inicio para poder regresar -->
+        <a href="index.html" class="logo-link">
+            <div class="logo">TDI<span>NOTICIAS</span></div>
+        </a>
         <nav>
             <ul>
-                <li><a href="#">Inicio</a></li>
+                <!-- Botón de Inicio enlazado a index.html -->
+                <li><a href="index.html">Inicio</a></li>
                 <li><a href="#">Nosotros</a></li>
                 <li><a href="#">Más Noticias</a></li>
-                <li><a href="https://sites.google.com/view/tdinoticias/reportajes-multimedia">Reportajes Multimedia</a></li>
-                <li><a href="https://sites.google.com/view/tdinoticias/juega-aqu%C3%AD">Juega Aquí</a></li>
+                <li><a href="reportaje.html">Reportajes Multimedia</a></li>
+                <li><a href="#">Juega Aquí</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- PORTADA DE IMPACTO -->
     <section class="story-cover">
         <img class="cover-media" src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1920&q=80" alt="Fondo de Reportaje">
         <div class="cover-content">
@@ -287,6 +297,7 @@
         </div>
     </section>
 
+    <!-- CUERPO DEL REPORTAJE (BLOQUE 1) -->
     <article class="story-container">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         
@@ -297,6 +308,7 @@
         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
     </article>
 
+    <!-- ELEMENTO MULTIMEDIA A ANCHO COMPLETO -->
     <div class="full-width-media">
         <img src="https://raw.githubusercontent.com/pabloalarcona5-lgtm/TCD/refs/heads/main/A_UNO_1727383-e1773420807588%20(1).jpg" alt="Elemento Multimedia Opcional">
         <div class="media-caption">
@@ -304,6 +316,7 @@
         </div>
     </div>
 
+    <!-- CUERPO DEL REPORTAJE (BLOQUE 2) -->
     <article class="story-container">
         <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
 
@@ -314,6 +327,7 @@
         <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
     </article>
 
+    <!-- BLOQUE SCROLLYTELLING (FONDO FIJO) -->
     <section class="scrolly-section" style="background-image: url('https://raw.githubusercontent.com/pabloalarcona5-lgtm/TCD/refs/heads/main/1858a-a2-e5f-658c-135cdea27_Blog_Pictures-31.jpg');">
         <div class="scrolly-text-box">
             <h3>El contexto en cifras</h3>
@@ -321,6 +335,7 @@
         </div>
     </section>
 
+    <!-- CUERPO DEL REPORTAJE (BLOQUE 3 + DATOS) -->
     <article class="story-container">
         <h2 class="story-subtitle">Factores determinantes y conclusiones</h2>
         <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
@@ -339,6 +354,7 @@
         <p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
     </article>
 
+    <!-- FOOTER -->
     <footer>
         <div class="footer-app-container">
             <iframe src="https://script.google.com/macros/s/AKfycbxCwkm2VXCOEV6u5b_f94j3nKxHo-cbwH98YhydzWzWdWs90k952WwVa24-K1UtzLMb/exec"></iframe>
