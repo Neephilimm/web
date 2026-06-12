@@ -2,7 +2,7 @@
 // CONFIGURACIÓN GLOBAL
 // ==========================================
 // PEGA AQUÍ LA URL DE TU APLICACIÓN WEB DE GOOGLE APPS SCRIPT
-const APPS_SCRIPT_URL = 'URL_DE_TU_WEB_APP_AQUI';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzw-Ojl3VhtKLOsZwJUE7WWT-xzNPU5b5WDtQskBgEzg1y1vw2H8ez5b6gOpCxlowow/exec';
 
 // ==========================================
 // 1. CONFIGURACIÓN DEL MAPA Y GOOGLE SHEETS
