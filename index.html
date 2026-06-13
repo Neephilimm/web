@@ -106,7 +106,7 @@
             100% { transform: translateX(0); }
         }
 
-        /* --- Main Content --- */
+        /* --- Main Content (Contenedor Dinámico) --- */
         main {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -114,6 +114,13 @@
             padding: 50px 5%;
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        /* Estilo para los enlaces de las tarjetas */
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
         }
 
         .card {
@@ -125,6 +132,7 @@
             display: flex;
             flex-direction: column;
             border: 1px solid #eee;
+            width: 100%;
         }
 
         .card:hover { 
@@ -137,7 +145,16 @@
 
         .card-content { padding: 20px; flex-grow: 1; }
         .card-content h3 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.25rem; }
-        .card-content p { font-size: 0.95rem; color: #666; }
+        .card-content p { font-size: 0.95rem; color: #666; margin: 0; }
+
+        /* Mensaje de carga */
+        .loading-text {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            padding: 40px;
+        }
 
         /* --- Footer --- */
         footer {
@@ -220,46 +237,9 @@
         </div>
     </section>
 
-    <main>
-        <article class="card">
-            <div class="card-img">
-                <img src="https://github.com/pabloalarcona5-lgtm/TCD/blob/main/foto%204.png?raw=true" alt="Caja Fiscal">
-            </div>
-            <div class="card-content">
-                <h3>¿Qué es la caja fiscal?</h3>
-                <p>La caja fiscal representa los recursos disponibles del Estado para financiar políticas públicas y programas sociales.</p>
-            </div>
-        </article>
-
-        <article class="card">
-            <div class="card-img">
-                <img src="https://github.com/pabloalarcona5-lgtm/TCD/blob/main/Quiroz%202222.png?raw=true" alt="Polémica">
-            </div>
-            <div class="card-content">
-                <h3>Grau vs Quiroz</h3>
-                <p>El ministro de Economía y el economista Jorge Quiroz protagonizaron un fuerte intercambio sobre la solvencia fiscal.</p>
-            </div>
-        </article>
-
-        <article class="card">
-            <div class="card-img">
-                <img src="https://github.com/pabloalarcona5-lgtm/TCD/blob/main/gasto%20publico%201.png?raw=true" alt="Gasto Público">
-            </div>
-            <div class="card-content">
-                <h3>Riesgos del gasto público</h3>
-                <p>Análisis profundo sobre si el Estado cuenta con los recursos sostenibles para mantener el nivel de gasto actual.</p>
-            </div>
-        </article>
-
-        <article class="card">
-            <div class="card-img">
-                <img src="https://github.com/pabloalarcona5-lgtm/TCD/blob/main/economia%204.png?raw=true" alt="Estabilidad">
-            </div>
-            <div class="card-content">
-                <h3>Confianza económica</h3>
-                <p>La transparencia en las cifras fiscales se vuelve un elemento clave para atraer inversión y mantener la estabilidad.</p>
-            </div>
-        </article>
+    <!-- La grilla comienza vacía; JavaScript inyectará las tarjetas aquí -->
+    <main id="news-container">
+        <div class="loading-text">Cargando noticias de actualidad...</div>
     </main>
 
     <footer>
@@ -271,5 +251,48 @@
         </div>
     </footer>
 
+    <!-- MOTOR JAVASCRIPT: Conexión automática con el archivo JSON -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById("news-container");
+
+            // Buscamos el archivo JSON en la misma raíz de tu servidor GitHub Pages
+            fetch("reportajes.json")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("No se pudo cargar el archivo de datos JSON");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Limpiamos el mensaje de "Cargando..."
+                    container.innerHTML = "";
+
+                    // Recorremos cada objeto dentro del JSON y creamos su estructura HTML
+                    data.forEach(noticia => {
+                        const cardLink = document.createElement("a");
+                        cardLink.href = noticia.url_enlace;
+                        cardLink.className = "card-link";
+
+                        cardLink.innerHTML = `
+                            <article class="card">
+                                <div class="card-img">
+                                    <img src="${noticia.imagen_portada}" alt="${noticia.titulo}">
+                                </div>
+                                <div class="card-content">
+                                    <h3>${noticia.titulo}</h3>
+                                    <p>${noticia.bajada}</p>
+                                </div>
+                            </article>
+                        `;
+                        container.appendChild(cardLink);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error en el motor dinámico:", error);
+                    container.innerHTML = `<div class="loading-text">Error al cargar las noticias. Por favor, intenta de nuevo más tarde.</div>`;
+                });
+        });
+    </script>
 </body>
 </html>
